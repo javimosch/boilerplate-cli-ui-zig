@@ -5,41 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CLI UI</title>
     
-    <!-- Vue 3 from CDN -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <!-- Self-contained: no CDN dependencies -->
+    <script src="/vendor/vue.global.prod.js"></script>
+    <script src="/vendor/lucide.js"></script>
     
-    <!-- Tailwind CSS from CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Tailwind CSS Config (must be after CDN script) -->
-    <script>
-        (function() {
-            var setConfig = function() {
-                if (typeof tailwind !== 'undefined') {
-                    tailwind.config = { darkMode: 'class' };
-                }
-            };
-            // Try immediately (CDN script is synchronous, should be ready)
-            setConfig();
-            // Fallback: retry on DOM ready in case CDN was deferred
-            if (typeof tailwind === 'undefined') {
-                document.addEventListener('DOMContentLoaded', setConfig);
-            }
-        })();
-    </script>
-    
-    <!-- Lucide Icons from CDN -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    
-    <!-- Safelist: ensure Tailwind CDN scans dark mode classes in component templates -->
-    <div style="display:none" aria-hidden="true">
-        <div class="dark:bg-gray-900 dark:bg-gray-800 dark:bg-gray-700 dark:bg-gray-700/50 dark:bg-gray-600 dark:bg-indigo-900/30 dark:bg-green-900/30 dark:bg-blue-900/30"></div>
-        <div class="dark:text-white dark:text-gray-300 dark:text-gray-400 dark:text-indigo-300 dark:text-indigo-400 dark:text-green-300 dark:text-green-400 dark:text-blue-300"></div>
-        <div class="dark:border-gray-700 dark:border-gray-800 dark:border-gray-600"></div>
-        <div class="dark:hover:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white dark:hover:bg-indigo-500 dark:hover:text-indigo-300"></div>
-    </div>
-    
-    <!-- App CSS -->
+    <!-- Pre-generated Tailwind CSS (17KB, includes all dark mode classes) -->
+    <link rel="stylesheet" href="/css/tailwind.css">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 min-h-screen">

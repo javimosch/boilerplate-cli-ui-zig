@@ -1,5 +1,8 @@
 // AppLayout - Main layout wrapper
-var AppLayout = {
+(function() {
+    const { inject, onMounted, onUpdated } = Vue;
+
+    window.AppLayout = {
     template: `
         <div class="flex h-screen">
             <!-- Sidebar -->
@@ -25,17 +28,18 @@ var AppLayout = {
         </div>
     `,
     setup() {
-        const sidebarOpen = Vue.inject('sidebarOpen');
-        const currentView = Vue.inject('currentView');
-        
-        Vue.onMounted(() => {
+        const sidebarOpen = inject('sidebarOpen');
+        const currentView = inject('currentView');
+
+        onMounted(() => {
             lucide.createIcons();
         });
-        
-        Vue.onUpdated(() => {
+
+        onUpdated(() => {
             lucide.createIcons();
         });
         
         return { sidebarOpen, currentView };
     }
 };
+})();

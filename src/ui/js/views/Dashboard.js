@@ -1,5 +1,8 @@
 // Dashboard View
-var DashboardView = {
+(function() {
+    const { ref, computed, onMounted, onUpdated, inject } = Vue;
+
+    window.DashboardView = {
     template: `
         <div>
             <div class="mb-6">
@@ -71,17 +74,17 @@ var DashboardView = {
         </div>
     `,
     setup() {
-        const status = Vue.inject('status');
-        const fetchStatus = Vue.inject('fetchStatus');
-        
-        const lastResponse = Vue.ref(null);
+        const status = inject('status');
+        const fetchStatus = inject('fetchStatus');
+
+        const lastResponse = ref(null);
         
         const endpoints = [
             { method: 'GET', path: '/api/status', description: 'Server status' },
             { method: 'GET', path: '/api/health', description: 'Health check' },
         ];
         
-        const uptime = Vue.computed(() => {
+        const uptime = computed(() => {
             if (!status.value?.uptime) return '-';
             return status.value.uptime.split('.')[0];
         });
@@ -103,14 +106,15 @@ var DashboardView = {
             }
         };
         
-        Vue.onMounted(() => {
+        onMounted(() => {
             lucide.createIcons();
         });
-        
-        Vue.onUpdated(() => {
+
+        onUpdated(() => {
             lucide.createIcons();
         });
         
         return { status, endpoints, uptime, lastResponse, methodColor, testEndpoint, fetchStatus };
     }
 };
+})();

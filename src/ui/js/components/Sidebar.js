@@ -1,5 +1,8 @@
 // Sidebar navigation component
-var Sidebar = {
+(function() {
+    const { inject } = Vue;
+
+    window.Sidebar = {
     props: {
         open: Boolean,
         currentView: String
@@ -58,8 +61,8 @@ var Sidebar = {
         </aside>
     `,
     setup(props) {
-        const sidebarOpen = Vue.inject('sidebarOpen');
-        const navigate = Vue.inject('navigate');
+        const sidebarOpen = inject('sidebarOpen');
+        const navigate = inject('navigate');
         
         const navItems = [
             { id: 'dashboard', label: 'Dashboard', icon: 'layout-dashboard' },
@@ -74,3 +77,4 @@ var Sidebar = {
         return { navItems, sidebarOpen, handleNavigate };
     }
 };
+})();

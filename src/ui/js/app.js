@@ -1,5 +1,6 @@
 // Main Vue Application with Hashbang Routing
-const { createApp, ref, onMounted, onUnmounted, watch, provide } = Vue;
+(function() {
+    const { createApp, ref, onMounted, onUnmounted, watch, provide } = Vue;
 
 const app = createApp({
     setup() {
@@ -110,3 +111,4 @@ app.component('settings-view', SettingsView);
 
 // Mount
 app.mount('#app');
+})();

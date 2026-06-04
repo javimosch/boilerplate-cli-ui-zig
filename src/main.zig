@@ -7,11 +7,16 @@ const mem = std.mem;
 const index_html = @embedFile("ui/index.html");
 const app_js = @embedFile("ui/js/app.js");
 const styles_css = @embedFile("ui/css/styles.css");
+const tailwind_css = @embedFile("ui/css/tailwind.css");
 const app_layout_js = @embedFile("ui/js/components/AppLayout.js");
 const sidebar_js = @embedFile("ui/js/components/Sidebar.js");
 const status_card_js = @embedFile("ui/js/components/StatusCard.js");
 const dashboard_js = @embedFile("ui/js/views/Dashboard.js");
 const settings_js = @embedFile("ui/js/views/Settings.js");
+
+// ─── Embedded Vendor Files (self-contained, no CDN) ────────────
+const vue_js = @embedFile("ui/vendor/vue.global.prod.js");
+const lucide_js = @embedFile("ui/vendor/lucide.js");
 
 const VERSION = "1.0.0";
 const DEFAULT_PORT = 8080;
@@ -60,6 +65,7 @@ fn handleRequest(request: *http.Server.Request, start_time: *Io.Timestamp, io: I
             .extra_headers = &.{
                 .{ .name = "content-type", .value = "application/json" },
                 .{ .name = "cache-control", .value = "no-cache, no-store, must-revalidate" },
+                .{ .name = "connection", .value = "close" },
             },
         });
         return;
@@ -71,6 +77,7 @@ fn handleRequest(request: *http.Server.Request, start_time: *Io.Timestamp, io: I
         , .{
             .extra_headers = &.{
                 .{ .name = "content-type", .value = "application/json" },
+                .{ .name = "connection", .value = "close" },
             },
         });
         return;
@@ -86,12 +93,16 @@ fn handleRequest(request: *http.Server.Request, start_time: *Io.Timestamp, io: I
         .{ .path = "/js/components/StatusCard.js", .content = status_card_js, .mime = "application/javascript" },
         .{ .path = "/js/views/Dashboard.js", .content = dashboard_js, .mime = "application/javascript" },
         .{ .path = "/js/views/Settings.js", .content = settings_js, .mime = "application/javascript" },
+        .{ .path = "/vendor/vue.global.prod.js", .content = vue_js, .mime = "application/javascript" },
+        .{ .path = "/vendor/lucide.js", .content = lucide_js, .mime = "application/javascript" },
+        .{ .path = "/css/tailwind.css", .content = tailwind_css, .mime = "text/css" },
     }) |file| {
         if (mem.eql(u8, path, file.path)) {
             try request.respond(file.content, .{
                 .extra_headers = &.{
                     .{ .name = "content-type", .value = file.mime },
                     .{ .name = "cache-control", .value = "no-cache, no-store, must-revalidate" },
+                    .{ .name = "connection", .value = "close" },
                 },
             });
             return;
@@ -103,6 +114,7 @@ fn handleRequest(request: *http.Server.Request, start_time: *Io.Timestamp, io: I
         .status = .not_found,
         .extra_headers = &.{
             .{ .name = "content-type", .value = "text/plain" },
+            .{ .name = "connection", .value = "close" },
         },
     });
 }
@@ -190,8 +202,8 @@ pub fn main(init: std.process.Init) !void {
         };
         defer stream.close(io);
 
-        var recv_buf: [8192]u8 = undefined;
-        var send_buf: [8192]u8 = undefined;
+        var recv_buf: [65536]u8 = undefined;
+        var send_buf: [65536]u8 = undefined;
         var conn_reader = stream.reader(io, &recv_buf);
         var conn_writer = stream.writer(io, &send_buf);
 

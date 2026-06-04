@@ -1,5 +1,8 @@
 // Settings View
-var SettingsView = {
+(function() {
+    const { reactive, ref, watch, onMounted, inject } = Vue;
+
+    window.SettingsView = {
     template: `
         <div>
             <div class="mb-6">
@@ -92,17 +95,17 @@ var SettingsView = {
         </div>
     `,
     setup() {
-        const theme = Vue.inject('theme');
-        const setTheme = Vue.inject('setTheme');
-        
-        const settings = Vue.reactive({
+        const theme = inject('theme');
+        const setTheme = inject('setTheme');
+
+        const settings = reactive({
             theme: theme.value,
             accentColor: '#6366f1',
             refreshInterval: 10,
             autoRefresh: true,
         });
         
-        const saveMessage = Vue.ref('');
+        const saveMessage = ref('');
         
         const accentColors = [
             '#6366f1', // indigo
@@ -122,12 +125,12 @@ var SettingsView = {
         };
         
         // Apply theme whenever it changes in the dropdown
-        Vue.watch(() => settings.theme, (newTheme) => {
+        watch(() => settings.theme, (newTheme) => {
             setTheme(newTheme);
         });
-        
+
         // Load saved settings on mount
-        Vue.onMounted(() => {
+        onMounted(() => {
             const saved = localStorage.getItem('cli-ui-settings');
             if (saved) {
                 const parsed = JSON.parse(saved);
@@ -140,3 +143,4 @@ var SettingsView = {
         return { settings, accentColors, saveSettings, saveMessage };
     }
 };
+})();
