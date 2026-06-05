@@ -4,7 +4,19 @@ Zig CLI with embedded web UI. Single binary, **190KB** — the smallest of all v
 
 Part of [SuperCLI](https://github.com/javimosch/supercli) — build CLI/UI plugins fast for 2026.
 
-**Other versions**: [Go+Vue](https://github.com/javimosch/boilerplate-cli-ui-go-v2-vue) | [Rust+Vue](https://github.com/javimosch/boilerplate-cli-ui-rust) | [C++](https://github.com/javimosch/boilerplate-cli-ui-cpp) | [.NET](https://github.com/javimosch/boilerplate-cli-ui-dotnet) | [Node](https://github.com/javimosch/boilerplate-cli-ui-node) | [Python](https://github.com/javimosch/boilerplate-cli-ui-python) | [Nim](https://github.com/javimosch/boilerplate-cli-ui-nim)
+| Stack | Repo | Binary |
+|-------|------|--------|
+| Go + inline HTML | [boilerplate-cli-ui-go](https://github.com/javimosch/boilerplate-cli-ui-go) | ~5MB |
+| Go + Vue 3 CDN | [boilerplate-cli-ui-go-v2-vue](https://github.com/javimosch/boilerplate-cli-ui-go-v2-vue) | ~5MB |
+| Go + React 18 CDN | [boilerplate-cli-ui-go-v2-react](https://github.com/javimosch/boilerplate-cli-ui-go-v2-react) | ~5MB |
+| Deno + vanilla JS | [boilerplate-cli-ui-deno](https://github.com/javimosch/boilerplate-cli-ui-deno) | ~76MB |
+| Node.js + vanilla JS | [boilerplate-cli-ui-node](https://github.com/javimosch/boilerplate-cli-ui-node) | ~123MB |
+| Python + React CDN | [boilerplate-cli-ui-python](https://github.com/javimosch/boilerplate-cli-ui-python) | ~10MB |
+| Rust + vanilla JS | [boilerplate-cli-ui-rust](https://github.com/javimosch/boilerplate-cli-ui-rust) | ~1.1MB |
+| .NET 8 + Vue 3 | [boilerplate-cli-ui-dotnet](https://github.com/javimosch/boilerplate-cli-ui-dotnet) | ~89MB |
+| C++ + Vue 3 | [boilerplate-cli-ui-cpp](https://github.com/javimosch/boilerplate-cli-ui-cpp) | ~493KB |
+| Nim + Vue 3 | [boilerplate-cli-ui-nim](https://github.com/javimosch/boilerplate-cli-ui-nim) | ~364KB |
+| **Zig + Vue 3** | **boilerplate-cli-ui-zig** | **~190KB** |
 
 ## Architecture
 
