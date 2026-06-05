@@ -17,6 +17,7 @@ Part of [SuperCLI](https://github.com/javimosch/supercli) — build CLI/UI plugi
 | C++ + Vue 3 | [boilerplate-cli-ui-cpp](https://github.com/javimosch/boilerplate-cli-ui-cpp) | ~493KB |
 | Nim + Vue 3 | [boilerplate-cli-ui-nim](https://github.com/javimosch/boilerplate-cli-ui-nim) | ~364KB |
 | **Zig + Vue 3** | **boilerplate-cli-ui-zig** | **~190KB** |
+| Dart + Vue 3 | [boilerplate-cli-ui-dart](https://github.com/javimosch/boilerplate-cli-ui-dart) | ~6.4MB |
 
 ## Architecture
 
