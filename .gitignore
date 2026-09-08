@@ -2,3 +2,4 @@ zig-out/
 .zig-cache/
 .vscode/
 .idea/
+boilerplate-cli-ui-zig
