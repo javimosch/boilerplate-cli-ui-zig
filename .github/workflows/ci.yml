@@ -12,9 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 0.16.0 has no tagged release yet, so the setup action 404s on it. The
+      # code targets the 0.16 Io API, so track master rather than pin a
+      # version that cannot be fetched.
       - uses: mlugg/setup-zig@v1
         with:
-          version: 0.16.0
+          version: master
 
       - name: Build
         run: ./build.sh
